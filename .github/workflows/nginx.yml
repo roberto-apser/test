@@ -15,3 +15,7 @@ jobs:
 
     - name: Build nginx image
       run: docker build -t my-nginx:latest .
+
+    - name: Push image to Dockerhub
+      run: |
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PERSONAL_ACCESS_TOKEN }}
