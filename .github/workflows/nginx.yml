@@ -10,5 +10,8 @@ jobs:
     - name: Print Hello World
       run: echo "Hello world!"
 
-    - name: build image
+    - name: Get the source code from the repository
+      uses: actions/checkout@v4
+
+    - name: Build nginx image
       run: docker build -t my-nginx:latest .
