@@ -1,0 +1,14 @@
+name: Custom Nginx Docker Build
+
+on: [workflow_dispatch]
+
+jobs:
+  create-nginx-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Print Hello World
+      run: echo "Hello world!"
+
+    - name: build image
+      run: docker build -t my-nginx:latest .
