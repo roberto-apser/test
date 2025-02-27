@@ -19,6 +19,15 @@ jobs:
     - name: List images created
       run: docker images
 
+    - name: Run Docker container
+      run: docker run -d -p 8080:80 my-nginx
+
+    - name: Wait for container to start
+      run: sleep 5  
+
+    - name: Test with curl
+      run: curl http://localhost:8080
+
     - name: Push image to Dockerhub
       run: |
         docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PERSONAL_ACCESS_TOKEN }}
