@@ -1,0 +1,34 @@
+name: Custom Nginx Docker Build
+
+on: [workflow_dispatch]
+
+jobs:
+  create-nginx-image:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Print Hello World
+      run: echo "Hello world!"
+
+    - name: Get the source code from the repository
+      uses: actions/checkout@v4
+
+    - name: Build nginx image
+      run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-nginx:latest .
+
+    - name: List images created
+      run: docker images
+
+    - name: Run Docker container
+      run: docker run -d -p 8080:80 ${{ secrets.DOCKERHUB_USERNAME }}/my-nginx:latest
+
+    - name: Wait for container to start
+      run: sleep 5  
+
+    - name: Test with curl
+      run: curl http://localhost:8080
+
+    - name: Push image to Dockerhub
+      run: |
+        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PERSONAL_ACCESS_TOKEN }}
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-nginx:latest
