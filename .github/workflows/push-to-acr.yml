@@ -1,4 +1,4 @@
-name: Custom Nginx Docker Build
+name: Azure Container Registry
 
 on: [workflow_dispatch]
 
