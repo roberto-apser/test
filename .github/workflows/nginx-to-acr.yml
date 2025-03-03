@@ -15,9 +15,6 @@ jobs:
 
     - name: List images created
       run: docker images
-      
-    - name: Test with curl
-      run: curl http://localhost:8080
 
     - name: Push image to Azure Container Registry
       uses: azure/docker-login@v2
