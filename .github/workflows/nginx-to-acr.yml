@@ -25,7 +25,11 @@ jobs:
     - name: Test with curl
       run: curl http://localhost:8080
 
-    - name: Push image to Dockerhub
-      run: |
-        docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PERSONAL_ACCESS_TOKEN }}
-        docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-nginx:latest
+    - name: Push image to Azure Container Registry
+      uses: azure/docker-login@v2
+      with:
+        login-server: atlasregistry79352.azurecr.io
+        #username: '<username>'
+        #password: '<password>'
+        
+        run: docker push atlasregistry79352.azurecr.io/my-nginx:latest
