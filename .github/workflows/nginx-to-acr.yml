@@ -7,9 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - name: Print Hello World
-      run: echo "Hello world!"
-
     - name: Get the source code from the repository
       uses: actions/checkout@v4
 
