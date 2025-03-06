@@ -1,6 +1,14 @@
 name: Custom Nginx Docker Build
 
-on: [workflow_dispatch]
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to checkout'
+        type: choice
+        options:
+          - branch2
+        default: branch2
 
 jobs:
   create-nginx-image:
